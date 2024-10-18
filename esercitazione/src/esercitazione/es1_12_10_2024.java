@@ -7,6 +7,7 @@ public class es1_12_10_2024 {
 		* @param numero tra 0 e 12 ed un tipo : suit (spades (♠), clubs (♣), diamonds (♦) e hearts (♥)).
 		*/
 		
+		// main -> collegato al file Card.java
 		
 		
 		Card card1 = new Card();
