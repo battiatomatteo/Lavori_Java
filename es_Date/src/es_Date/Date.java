@@ -1,37 +1,29 @@
 package es_Date;
 
+/**
+ * Classe per implementare una data del calendario.
+ * 
+ * @author Fausto Spoto
+ */
 public class Date {
-	// campi (field) degli oggetti di classe Date
-	// stato di un oggetto Date
 	private final int day;
 	private final int month;
 	private final int year;
-	private Language language;
-	
-	public static int count() { // static =  chiamato sulla classe 
-		return counter; 
-	}
 
-	// da usare solo per campi costanti
-	private static String[] months = {
-			"gennaio", "febbraio", "marzo", "aprile", "maggio", "giugno",
-			"luglio", "agosto", "settembre", "ottobre", "novembre", "dicembre"
-	};
-
-	private static String[] americanMonths = {
-			"January", "February", "March", "April", "May", "June",
-			"July", "August", "September", "October", "November", "December"
-	};
-	
-	// uno per classe
+	// ce n'è uno per tutta la classe
 	private static int counter;
 
-	// costruttore
+	/**
+	 * Costruisce una data con i parametri indicati.
+	 * 
+	 * @param day il giorno
+	 * @param month il mese
+	 * @param year l'anno
+	 */
 	public Date(int day, int month, int year) {
 		this.day = day;
 		this.month = month;
 		this.year = year;
-		this.language = Language.ITALIAN;
 		verify();
 		counter++;
 	}
@@ -46,12 +38,40 @@ public class Date {
 		//this(25, 12, 2024);
 	}
 	
-	public static Date firstDay(int year) {
-		return new Date(1,1,year);
+	public int getDay() {
+		return day;
 	}
-	
+
+	public int getMonth() {
+		return month;
+	}
+
+	public int getYear() {
+		return year;
+	}
+
+	/**
+	 * Ritorna il numero di oggetti Date creati
+	 * fino a questo momento.
+	 * 
+	 * @return il numero di oggetti creati
+	 */
+	public static int count() {
+		return counter;
+	}
+
+	/**
+	 * Ritorna il primo giorno dell'anno indicato.
+	 * 
+	 * @param year l'anno
+	 * @return il primo giorno di year
+	 */
+	public static Date firstDay(int year) {
+		return new Date(1, 1, year);
+	}
+
 	public static Date lastDay(int year) {
-		return new Date(31,12,year);
+		return new Date(31, 12, year);
 	}
 
 	private void verify() {
@@ -74,57 +94,11 @@ public class Date {
 		return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
 	}
 
-	public void setAmerican() {
-		this.language = Language.AMERICAN;
-	}
-
-	public void setItalian() {
-		this.language = Language.ITALIAN;
-	}
-
-// metodi
-	public String toString() {
-		if (language == Language.ITALIAN)
-			return day + " " + months[month - 1] + " " + year;
-		else
-			return americanMonths[month - 1] + " " + day + ", " + year;
-	}
-
-	// testa l'uguaglianza semantica tra this e other
-	/*public boolean equals(Date other) {
-		if (this.day == other.day &&
-			this.month == other.month &&
-			this.year == other.year)
-			return true;
-		else
-			return false;
-	}*/
 	public boolean equals(Date other) {
 		return day == other.day &&
 			month == other.month &&
 			year == other.year;
 	}
-	
-	// confronta cronologicamente this con other
-	// ritorna < 0 se this viene prima
-	// ritorna > 0 se other viene prima
-	// ritorna == 0 se this ed other sono semanticamente uguali
-	/*public int compareTo(Date other) {
-		if (this.year < other.year)
-			return -1;
-		else if (this.year > other.year)
-			return 13;
-		else if (this.month < other.month)
-			return -2;
-		else if (this.month > other.month)
-			return 5;
-		else if (this.day < other.day)
-			return -1;
-		else if (this.day > other.day)
-			return 1;
-		else
-			return 0; // sono semanticamente uguali
-	}*/
 
 	public int compareTo(Date other) {
 		int diff = this.year - other.year;
@@ -137,18 +111,29 @@ public class Date {
 
 		return this.day - other.day;
 	}
-	
-	public Season getSeason(){
-		if (this.compareTo(new Date(21, 3, year)) <0 ) 
+
+	public Season getSeason() {
+		if (this.compareTo(new Date(21, 3, year)) < 0)
 			return Season.WINTER;
-		else if (this.compareTo(new Date(21, 6, year)) <0 )
+		else if (this.compareTo(new Date(21, 6, year)) < 0)
 			return Season.SPRING;
-		else if (this.compareTo(new Date(23, 9, year)) <0 )
+		else if (this.compareTo(new Date(23, 9, year)) < 0)
 			return Season.SUMMER;
-		else if (this.compareTo(new Date(21, 12, year)) < 0 )
+		else if (this.compareTo(new Date(21, 12, year)) < 0)
 			return Season.AUTUMN;
-		else 
-			return Season.WINTER;  //ULTIMI GIORNI DI DICEMBRE
+		else
+			return Season.WINTER; // ultimi giorni di dicembre
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
 

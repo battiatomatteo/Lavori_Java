@@ -10,7 +10,7 @@ public class mainDate {
 		d1 = new Date(9, 10, 2024);
 		System.out.println("d1 = " + d1.toString());
 		Date xmas = new Date(25, 12, 2024);
-		xmas.setAmerican();
+		//xmas.setAmerican();
 		System.out.println("xmas = " + xmas.toString());
 		System.out.println("d1 = " + d1.toString());
 		Date d2 = new Date(9, 10);
